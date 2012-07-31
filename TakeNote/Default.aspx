@@ -8,9 +8,17 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    
-    </div>
+    <p>
+        Hello planet Earth<br />
+        This might be a nice place to live.
+    </p>
     </form>
+    <script type="text/javascript">
+
+        setTimeout(function () {
+            alert("Yes, it's a nice place to live!");
+        }, 2000);
+
+    </script>
 </body>
 </html>
