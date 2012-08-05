@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html ng-app>
+<html ng-app="phonecat">
 <head runat="server">
     <title ng-bind-template="Google Phone Gallery: {{query}}">Google Phone Gallery</title>
     <link rel="stylesheet" type="text/css" href="css/app.css" />
@@ -10,15 +10,15 @@
     <script type="text/javascript" src="scripts/angular.min.js"></script>
 </head>
 <body ng-controller="PhoneListCtrl">
-    <select ng-model="orderProp">
-        <option value="name">Alphabetical</option>
-        <option value="age">Newest</option>
-    </select>
+
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span2">
                 <!--Sidebar content-->
-
+                <select ng-model="orderProp">
+                    <option value="name">Alphabetical</option>
+                    <option value="age">Newest</option>
+                </select>
                 Search:
                 <input ng-model="query">
             </div>
@@ -39,27 +39,26 @@
 
     <script type="text/javascript">
 
-        function PhoneListCtrl($scope) {
-            $scope.phones = [
-                {
-                    "name": "Nexus S",
-                    "snippet": "Fast just got faster with Nexus S.",
-                    "age": 0
-                },
-                {
-                    "name": "Motorola XOOMâ„¢ with Wi-Fi",
-                    "snippet": "The Next, Next Generation tablet.",
-                    "age": 1
-                },
-                {
-                    "name": "MOTOROLA XOOMâ„¢",
-                    "snippet": "The Next, Next Generation tablet.",
-                    "age": 2
-                }
-            ];
+        angular.module('phonecat', []).
+          config(['$routeProvider', function ($routeProvider) {
+              $routeProvider.
+                  when('/phones', { templateUrl: 'partials/phone-list.html', controller: PhoneListCtrl }).
+                  when('/phones/:phoneId', { templateUrl: 'partials/phone-detail.html', controller: PhoneDetailCtrl }).
+                  otherwise({ redirectTo: '/phones' });
+          }]);
+
+        function PhoneListCtrl($scope, $http) {
+            $http.get('phones/phones.html').success(function (data) {
+                $scope.phones = data;
+            });
 
             $scope.orderProp = 'age';
         }
+
+        function PhoneDetailCtrl($scope, $routeParams) {
+            $scope.phoneId = $routeParams.phoneId;
+        }
+
     </script>
 </body>
 </html>

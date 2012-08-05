@@ -61,6 +61,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="Default.aspx" />
     <Content Include="scripts\angular.min.js" />
+    <Content Include="phones\phones.html" />
     <None Include="scripts\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
     </None>
@@ -90,6 +91,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
