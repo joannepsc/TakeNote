@@ -24,7 +24,7 @@
             </div>
             <div class="span10">
                 <!--Body content-->
-
+                Hello
                 <ul class="phones">
                     <li ng-repeat="phone in phones | filter:query | orderBy: orderProp">{{phone.name}}
             <p>{{phone.snippet}}</p>
